@@ -94,12 +94,12 @@
     sudo pacman -S terminus-font ttf-dejavu
     **download polybar from aur**
  
-#### Xorg Keyboard
+### Xorg Keyboard
     localectl --no-convert set-x11-keymap de pc104 nodeadkeys
     vim ~/.xinitrc
         xset r 250 60 
 
-#### Xorg autostart
+### Xorg autostart
     vim ~/.xinitrc
         xset r rate 250 60
         exec i3
