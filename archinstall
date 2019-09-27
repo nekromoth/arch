@@ -107,3 +107,7 @@
         [[ -f ~/.bashrc ]] && . ~/.bashrc
         exec startx
     
+    
+### install shit with AUR
+    git clone https://aur.archlinux.org/polybar.git
+    makepkg -si
