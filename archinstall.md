@@ -1,0 +1,109 @@
+### Keyboard
+    loadkeys de
+
+### Partitions
+    gdisk /dev/nvme0n1
+
+### Filesystem
+    mkfs.vfat -F 32 -n EFI /dev/nvme0n1p1
+    mkfs.ext4 -L ROOT /dev/nvme0n1p2
+
+### Mount partitions
+    mount /dev/nvme0n1p2 /mnt
+    mkdir /mnt/boot
+    mount /dev/nvmen1p1 /mnt/boot
+
+### Install arch
+    pacstrap /mnt base base-devel bash-completion vim
+
+### Generate filesystem table
+    genfstab -Lp /mnt >> /mnt/etc/fstab
+
+### Goto new installed system
+    arch-chroot /mnt
+
+### Configure mirrors
+    vim /etc/pacman.d/mirrorlist
+
+### Install Bootloader
+    bootctl install
+    vim /boot/loader/loader.conf
+        default arch
+        timeout 0
+    vim /boot/loader/entries/arch.conf
+        title   Archlinux
+        linux   /vmlinuz-linux
+        initrd  /initramfs-linux.img
+        options root=LABEL=ROOT rw
+
+### Timezone
+    ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+    hwclock -s
+
+### Language
+    vim /etc/locale.gen
+        en_US.UTF-8 UTF8
+    locale-gen
+    vim /etc/locale.conf
+        LANG=en_US.UTF-8
+    
+### Keyboard
+    vim /etc/vconsole.conf
+        KEYMAP=de-latin1-nodeadkeys
+
+### Host
+    vim /etc/hostname
+        arch
+    vim /etc/hosts
+        127.0.0.1   localhost
+        ::1         localhost
+        127.0.1.1   home.localdomain home
+
+### Root password
+    passwd
+
+### User
+    useradd -m -g users -s /bin/bash moth
+    passwd moth
+
+### sudo 
+    visudo
+        moth ALL=(ALL) ALL
+
+### Internet
+    pacman -S networkmanager
+    systemctl enable NetworkManager
+
+### Autologin
+    mkdir /etc/systemd/system/getty@tty1.service.d
+    vim   /etc/systemd/system/getty@tty1.service.d/override.conf
+        [Service]
+        ExecStart=
+        ExecStart= -usr/bin/agetty -a moth %I $TERM
+
+### REBOOT, LOGIN
+    exit
+    reboot
+
+
+### Xorg, i3, sound, misc, fonts
+    sudo pacman -S xorg xorg-xinit
+    sudo pacman -S i3-gaps rofi rxvt-unicode
+    sudo pacman -S alsa-utils
+    sudo pacman -S firefox ranger feh git neofetch 
+    sudo pacman -S terminus-font ttf-dejavu
+    **download polybar from aur**
+ 
+#### Xorg Keyboard
+    localectl --no-convert set-x11-keymap de pc104 nodeadkeys
+    vim ~/.xinitrc
+        xset r 250 60 
+
+#### Xorg autostart
+    vim ~/.xinitrc
+        xset r rate 250 60
+        exec i3
+    vim ~/.bash_profile
+        [[ -f ~/.bashrc ]] && . ~/.bashrc
+        exec startx
+    
