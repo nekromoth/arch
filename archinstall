@@ -90,8 +90,8 @@
     sudo pacman -S xorg xorg-xinit
     sudo pacman -S i3-gaps rofi rxvt-unicode
     sudo pacman -S alsa-utils
-    sudo pacman -S firefox ranger feh git neofetch 
-    sudo pacman -S terminus-font ttf-dejavu
+    sudo pacman -S firefox ranger feh git neofetch w3m
+    sudo pacman -S terminus-font
     **download polybar from aur**
  
 ### Xorg Keyboard
