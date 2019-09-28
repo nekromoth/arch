@@ -117,3 +117,7 @@
     gpg --recv-keys 2EBF997C15BDA244B6EBF5D84773BD5E130D1D45
     to spotify directory
     
+### Firewall
+    sudo pacman -S gufw
+    systemctl start ufw.service
+    systemctl enable ufw.service
