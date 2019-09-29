@@ -121,3 +121,8 @@
     sudo pacman -S gufw
     systemctl start ufw.service
     systemctl enable ufw.service
+    
+### Password authentication popup
+    sudo pacman -S polkit-gnome gnome-keyring
+    vim .config/i3/config
+        exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
