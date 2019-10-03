@@ -24,6 +24,7 @@
 
 ### Configure mirrors
     vim /etc/pacman.d/mirrorlist
+* add `mirrorlist-manager` AUR
 
 ### Install Bootloader
     bootctl install
