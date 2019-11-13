@@ -1,14 +1,26 @@
-### Keyboard
+#### Keyboard
     loadkeys de
 
-### Partitions
-    gdisk /dev/nvme0n1
+#### Partitions
+    gdisk /dev/HDD
+    (part 1 ef00 512MiB)
+    (part 2 8300 remainder)
+    
+#### LUKS
+    modprobe dm-crypt
+    cryptsetup -c aes-xts-plain  -s 512  -h sha512  -i 4000 luksFormat HDD_PART_2
+    cryptsetup luksOpen /dev/HDD_PART2 luks
+    pvcreate /dev/mapper/luks
+    vgcreate vg0 /dev/mapper/luks
+    lvcreate -l +100%free vg0 --name root
+    
+#### Filesystem
+    mkfs.ext4 /dev/mapper/vg0-root
+    
+    ~~mkfs.vfat -F 32 -n EFI /dev/nvme0n1p1~~
+    ~~mkfs.ext4 -L ROOT /dev/nvme0n1p2~~
 
-### Filesystem
-    mkfs.vfat -F 32 -n EFI /dev/nvme0n1p1
-    mkfs.ext4 -L ROOT /dev/nvme0n1p2
-
-### Mount partitions
+#### Mount partitions
     mount /dev/nvme0n1p2 /mnt
     mkdir /mnt/boot
     mount /dev/nvmen1p1 /mnt/boot
