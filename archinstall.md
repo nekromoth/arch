@@ -8,27 +8,35 @@
     
 #### LUKS
     modprobe dm-crypt
-    cryptsetup -c aes-xts-plain  -s 512  -h sha512  -i 4000 luksFormat HDD_PART_2
-    cryptsetup luksOpen /dev/HDD_PART2 luks
-    pvcreate /dev/mapper/luks
-    vgcreate vg0 /dev/mapper/luks
-    lvcreate -l +100%free vg0 --name root
+    cryptsetup -c aes-xts-plain  -s 512  -h sha512  -i 8000 luksFormat HDD_PART_2
+    cryptsetup luksOpen /dev/HDD_PART2 cryroot
+    
+    pvcreate /dev/mapper/cryroot
+    vgcreate vg0 /dev/mapper/cryroot
+    lvcreate -l +100%free vg0 -n root
     
 #### Filesystem
-    mkfs.ext4 /dev/mapper/vg0-root
-    
-    ~~mkfs.vfat -F 32 -n EFI /dev/nvme0n1p1~~
-    ~~mkfs.ext4 -L ROOT /dev/nvme0n1p2~~
+    mkfs.vfat -F 32 -n EFI /dev/HDD_PART_1
+    mkfs.ext4 -L ROOT /dev/mapper/vg0-root
 
+    
+~~mkfs.vfat -F 32 -n EFI /dev/nvme0n1p1~~
+~~mkfs.ext4 -L ROOT /dev/nvme0n1p2~~
+    
 #### Mount partitions
-    mount /dev/nvme0n1p2 /mnt
+    mount /dev/mapper/vg0-root /mnt
     mkdir /mnt/boot
-    mount /dev/nvmen1p1 /mnt/boot
+    mount /dev/HDD_PART_1 /mnt/boot
+    
+    
+~~mount /dev/nvme0n1p2 /mnt~~
+~~mkdir /mnt/boot~~
+~~mount /dev/nvmen1p1 /mnt/boot~~
 
 
 ### Install arch
     pacstrap /mnt base base-devel 
-                  netctl dialog 
+                  networkmanager
                   linux-lts
                   vim
                   man-db man-pages texinfo
@@ -144,3 +152,44 @@
     sudo pacman -S polkit-gnome gnome-keyring
     vim .config/i3/config
         exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
+        
+        
+        
+loadkeys de
+gdisk /dev/sda
+
+mkfs.vfat -F32 /dev/sda1
+
+cryptsetup luksFormat /dev/sda2
+cryptsetup open /dev/sda2 cryroot
+pvcreate /dev/mapper/cryroot
+vgcreate vg0 /dev/mapper/cryroot
+lvcreate -l 100%free vg0 -n cryroot
+modprobe dm_mod
+vgscan
+vgchange -ay
+
+mkfs.ext4 /dev/vg0/cryroot
+
+mount /dev/vg0/cryroot /mnt
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot
+
+mkdir /mnt/etc
+genfstab -Up /mnt >> /mnt/etc/fstab
+
+pacstrap /mnt base base-devel grub lvm2 networkmanager efibootmgr linux-lts vim man-db man-pages texinfo
+
+arch-chroot /mnt
+systemctl enable NetworkManager
+vim /etc/mkinitcpio.conf
+	HOOKS=(base udev autodetect modconf block encrypt lvm2 filesystems keyboard fsck)
+mkinitcpio -p linux-lts
+
+vim /etc/locale.gen
+	en_US ...
+locale-gen
+
+passwd
+
+
