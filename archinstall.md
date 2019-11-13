@@ -13,9 +13,14 @@
     mkdir /mnt/boot
     mount /dev/nvmen1p1 /mnt/boot
 
-### Install arch
-    pacstrap /mnt base base-devel bash-completion vim
 
+### Install arch
+    pacstrap /mnt base base-devel 
+                  netctl dialog 
+                  linux-lts
+                  vim
+                  man-db man-pages texinfo
+                  
 ### Generate filesystem table
     genfstab -Lp /mnt >> /mnt/etc/fstab
 
