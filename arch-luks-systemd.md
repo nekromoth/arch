@@ -78,4 +78,4 @@ If you have a SSD change relatime on all non-boot partitions to noatime.
         initrd  /intel-ucode.img
         initrd  /initramfs-linux-lts.img
         options cryptdevice=UUID=<UUID>:cryroot root=/dev/mapper/cryroot rw
-Use the <UUID> from /dev/sda2 ! 
+**Use the UUID from /dev/sda2 !**
