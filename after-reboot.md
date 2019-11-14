@@ -13,7 +13,7 @@
     sudo vim   /etc/systemd/system/getty@tty1.service.d/override.conf
         [Service]
         ExecStart=
-        ExecStart= -usr/bin/agetty -a moth %I $TERM
+        ExecStart= -/usr/bin/agetty -a moth %I $TERM
 
 #### DESKTOP SYSTEM
     sudo pacman -S xorg xorg-xinit i3-gaps rofi ranger conky alsa-utils firefox ranger git w3m terminus-font gufw polkit-gnome gnome-keyring terminus-font bash-completion
