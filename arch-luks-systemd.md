@@ -47,7 +47,10 @@ If you have a SSD change relatime on all non-boot partitions to noatime.
     
 #### HOSTNAME
     echo arch > /etc/hostname
-
+    vim /etc/hosts
+        127.0.0.1   localhost
+        ::1         localhost
+        127.0.1.1   home.localdomain home
 #### ROOT PASSWORD
     passwd 
 
