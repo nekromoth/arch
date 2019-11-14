@@ -4,16 +4,18 @@
     systemctl status sshd
     passwd 
     ip addr
+    
 
-** loady keymap ** 
-    loadkeys de 
-
+    
 ** partition the disk ** 
     (lsblk)
     gdisk /dev/sda
         * Part 1  512 MiB   ef00  /boot
         * Part 2  remainder 8300  /
-
+        
+** loady keymap ** 
+    loadkeys de 
+    
 ** LUKS on / **
     modprobe dm-crypt
     cryptsetup -c aes-xts-plain -s 512 -h sha512 -i 4000 luksFormat /dev/sda2
