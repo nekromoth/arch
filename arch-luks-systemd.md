@@ -17,7 +17,7 @@
 #### LUKS ENCRYPTION
     modprobe dm-crypt
     cryptsetup -c aes-xts-plain -s 512 -h sha512 -i 4000 luksFormat /dev/sda2
-    cryptsetup open /dev/sda2 *cryroot*
+    cryptsetup open /dev/sda2 cryroot
 
 #### FORMAT AND MOUNT ROOT
     mkfs.ext4 /dev/mapper/cryroot
@@ -28,50 +28,54 @@
     mkdir /mnt/boot
     mount /dev/sda1 /mnt/boot
 
-** install base system **
-    (wifi-menu)
-    pacstrap /mnt base base-devel networkmanager linux-lts gvim man-db man-pages texinfo intel-ucode
+#### INSTALL THE BASE SYSTEM
+    pacstrap /mnt base base-devel networkmanager linux-lts linux-firmware gvim man-db man-pages texinfo intel-ucode
 
-** gen filesystem table **
+#### GENERATE FILESYSTEM TABLE
     genfstab -pU /mnt >> /mnt/etc/fstab
-        * If you have SSD change relatime on all non-boot partitions to noatime.
-            vim /mnt/etc/fstab)
+    
+If you have a SSD change relatime on all non-boot partitions to noatime.
 
-** go into new system ** 
+    vim /mnt/etc/fstab
+
+#### CHANGE ROOT
     arch-chroot /mnt
 
-** system clock **
+#### SYSTEM CLOCK
     ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
-    hwclock --systohc
+    hwclock -s
+    
+#### HOSTNAME
+    echo arch > /etc/hostname
 
-** hostname **
-    echo moth > /etc/hostname
-
-** root password **
+#### ROOT PASSWORD
     passwd 
 
-** locales ** 
+#### LOCALES
     echo LANG=en_US.UTF-8 > /etc/locale.conf
     echo KEYMAP=de-latin1-nodeadkeys > /etc/vconsole.conf
     locale-gen
-
-** install bootloader **
-    bootctl install
-
-** configure mkinitcpio **
+    
+#### INITRAMDISKFS
     vim /etc/mkinitcpio.conf 
         HOOKS=(base udev autodetect keyboard keymap modconf block encrypt filesystems fsck)
+    
     mkinitcpio -p linux-lts
 
-** configure bootloader **
+#### BOOTLOADER
+    bootctl install
+    
     vim /boot/loader/loader.conf
         default arch
         editor 0
         timeout 0
-    1234
+        
+    lsblk -f >> /boot/loader/entries/arch.conf
     
+    vim /boot/loader/entries/arch.conf
         title   Archlinux
         linux   /vmlinuz-linux-lts
         initrd  /intel-ucode.img
         initrd  /initramfs-linux-lts.img
         options cryptdevice=UUID=<UUID>:cryroot root=/dev/mapper/cryroot rw
+Use the <UUID> from /dev/sda2 ! 
