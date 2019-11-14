@@ -42,7 +42,7 @@
     arch-chroot /mnt
 
 ** system clock **
-    ln -s /usr/share/zoneinfo/Europe/Helsinki /etc/localtime
+    ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
     hwclock --systohc
 
 ** hostname **
