@@ -8,25 +8,22 @@
     (systemctl status sshd)
     ip addr
     
-#### USER
-    useradd -m -g users -s /bin/bash moth
-    passwd moth
-    
-#### SUDO 
-    visudo
-    moth ALL=(ALL) ALL
-    
 #### AUTOLOGIN
-    mkdir /etc/systemd/system/getty@tty1.service.d
-    vim   /etc/systemd/system/getty@tty1.service.d/override.conf
+    sudo mkdir /etc/systemd/system/getty@tty1.service.d
+    sudo vim   /etc/systemd/system/getty@tty1.service.d/override.conf
         [Service]
         ExecStart=
         ExecStart= -usr/bin/agetty -a moth %I $TERM
 
 #### DESKTOP SYSTEM
-    pacman -S xorg xorg-xinit i3-gaps rofi ranger conky alsa-utils firefox ranger git w3m terminus-font gufw polkit-gnome gnome-keyring
+    sudo pacman -S xorg xorg-xinit i3-gaps rofi ranger conky alsa-utils firefox ranger git w3m terminus-font gufw polkit-gnome gnome-keyring terminus-font bash-completion
     
 Install ```pamac``` and ```terminus-ttf``` from AUR. 
+
+    git clone https://aur.archlinux.org/pamac-aur.git
+    git clone https://aur.archlinux.org/terminus-font-ttf.git
+    
+```cd``` into downloaded folder and ```makepkg -si```
 
 #### XORG KEYBOARD
     localectl --no-convert set-x11-keymap de pc104 nodeadkeys
