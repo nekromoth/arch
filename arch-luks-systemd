@@ -5,7 +5,7 @@
 ** ssh ? **
     (wifi-menu)
     systemctl start sshd
-    systemctl status sshd
+    (systemctl status sshd)
     passwd 
     ip addr
     
