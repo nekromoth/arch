@@ -1,30 +1,29 @@
-
-** loady keymap ** 
+#### KEYMAP
     loadkeys de 
     
-** ssh ? **
+#### SSH ? 
     (wifi-menu)
     systemctl start sshd
     (systemctl status sshd)
     passwd 
     ip addr
     
-** partition the disk ** 
+#### PARTITIONS
     (lsblk)
     gdisk /dev/sda
         * Part 1  512 MiB   ef00  /boot
         * Part 2  remainder 8300  /
           
-** LUKS on / **
+#### LUKS ENCRYPTION
     modprobe dm-crypt
     cryptsetup -c aes-xts-plain -s 512 -h sha512 -i 4000 luksFormat /dev/sda2
-    cryptsetup open /dev/sda2 cryroot
+    cryptsetup open /dev/sda2 *cryroot*
 
-** / format and mount **
+#### FORMAT AND MOUNT ROOT
     mkfs.ext4 /dev/mapper/cryroot
     mount /dev/mapper/cryroot /mnt
-
-** /boot format and mount **
+    
+#### FORMAT AND MOUNT EFI
     mkfs.vfat -F32 /dev/sda1
     mkdir /mnt/boot
     mount /dev/sda1 /mnt/boot
@@ -34,7 +33,7 @@
     pacstrap /mnt base base-devel networkmanager linux-lts gvim man-db man-pages texinfo intel-ucode
 
 ** gen filesystem table **
-    genfstab -pU /mnt/etc/fstab
+    genfstab -pU /mnt >> /mnt/etc/fstab
         * If you have SSD change relatime on all non-boot partitions to noatime.
             vim /mnt/etc/fstab)
 
@@ -61,7 +60,7 @@
 
 ** configure mkinitcpio **
     vim /etc/mkinitcpio.conf 
-        HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt filesystems fsck)
+        HOOKS=(base udev autodetect keyboard keymap modconf block encrypt filesystems fsck)
     mkinitcpio -p linux-lts
 
 ** configure bootloader **
@@ -69,7 +68,8 @@
         default arch
         editor 0
         timeout 0
-    vim /boot/loader/entries/arch.conf
+    1234
+    
         title   Archlinux
         linux   /vmlinuz-linux-lts
         initrd  /intel-ucode.img
