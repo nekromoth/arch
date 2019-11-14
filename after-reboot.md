@@ -3,6 +3,11 @@
     systemctl start NetworkManager
     nmtui
     
+#### SSH ? 
+    systemctl start sshd
+    (systemctl status sshd)
+    ip addr
+    
 #### USER
     useradd -m -g users -s /bin/bash moth
     passwd moth
