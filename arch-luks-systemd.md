@@ -29,7 +29,7 @@
     mount /dev/sda1 /mnt/boot
 
 #### INSTALL THE BASE SYSTEM
-    pacstrap /mnt base base-devel networkmanager linux-lts linux-firmware gvim man-db man-pages texinfo intel-ucode
+    pacstrap /mnt base base-devel networkmanager linux-lts linux-firmware intel-ucode openssh gvim man-db man-pages texinfo 
 
 #### GENERATE FILESYSTEM TABLE
     genfstab -pU /mnt >> /mnt/etc/fstab
