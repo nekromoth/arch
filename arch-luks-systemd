@@ -1,3 +1,10 @@
+** ssh ? **
+    (wifi-menu)
+    systemctl start sshd
+    systemctl status sshd
+    passwd 
+    ip addr
+
 ** loady keymap ** 
     loadkeys de 
 
