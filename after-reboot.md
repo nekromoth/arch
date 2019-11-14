@@ -25,10 +25,11 @@ Install ```pamac``` and ```terminus-ttf``` from AUR.
     
 ```cd``` into downloaded folder and ```makepkg -si```
 
-#### XORG KEYBOARD
+#### XORG KEYBOARD and i3
     localectl --no-convert set-x11-keymap de pc104 nodeadkeys
     vim ~/.xinitrc
         xset r 250 60 
+        exec i3
         
 #### FIREWALL
     systemctl start ufw.service
