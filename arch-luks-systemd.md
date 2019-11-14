@@ -54,6 +54,14 @@ If you have a SSD change relatime on all non-boot partitions to noatime.
 #### ROOT PASSWORD
     passwd 
 
+#### USER
+    useradd -m -g users -s /bin/bash moth
+    passwd moth
+    
+#### SUDO 
+    visudo
+    moth ALL=(ALL) ALL
+    
 #### LOCALES
     echo LANG=en_US.UTF-8 > /etc/locale.conf
     echo KEYMAP=de-latin1-nodeadkeys > /etc/vconsole.conf
