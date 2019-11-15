@@ -34,7 +34,7 @@
 #### GENERATE FILESYSTEM TABLE
     genfstab -pU /mnt >> /mnt/etc/fstab
     
-If you have a SSD change relatime on all non-boot partitions to noatime.
+If you have a SSD change ```relatime``` on all **non-boot** partitions to ```noatime```.
 
     vim /mnt/etc/fstab
 
