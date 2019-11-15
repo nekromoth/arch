@@ -59,10 +59,12 @@ If you have a SSD change relatime on all non-boot partitions to noatime.
     passwd moth
     
 #### SUDO 
-    visudo
+    EDITOR=vim visudo
     moth ALL=(ALL) ALL
     
 #### LOCALES
+    vim /etc/locale.gen
+        en_US.UTF-8 UTF8
     echo LANG=en_US.UTF-8 > /etc/locale.conf
     echo KEYMAP=de-latin1-nodeadkeys > /etc/vconsole.conf
     locale-gen
