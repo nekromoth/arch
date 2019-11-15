@@ -32,7 +32,13 @@ Install ```pamac``` and ```terminus-ttf``` from AUR.
     vim ~/.xinitrc
         xset r 250 60 
         exec i3
+
+#### BACKLIGHT
+    sudo EDITOR=vim visudo
+        moth = ALL = NOPASSWD: /usr/bin/light
         
+Now you can execute with ```sudo light <operation>``` without entering the password.
+
 #### FIREWALL
     systemctl start ufw.service
     systemctl enable ufw.service
