@@ -16,7 +16,9 @@
         ExecStart= -/usr/bin/agetty -a moth %I $TERM
 
 #### DESKTOP SYSTEM
-    sudo pacman -S xorg xorg-xinit i3-gaps rofi ranger conky alsa-utils firefox ranger git w3m terminus-font gufw polkit-gnome gnome-keyring terminus-font bash-completion rxvt-unicode
+    sudo pacman -S xorg xorg-xinit i3-gaps rofi ranger conky firefox ranger git w3m terminus-font gufw polkit-gnome gnome-keyring terminus-font bash-completion rxvt-unicode pulseaudio pavucontrol acpi light
+It would to be a good idea to reboot after this.
+    
     
 Install ```pamac``` and ```terminus-ttf``` from AUR. 
 
