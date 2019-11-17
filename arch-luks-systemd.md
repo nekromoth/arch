@@ -72,7 +72,6 @@ If you have a SSD change ```relatime``` on all **non-boot** partitions to ```noa
 #### INITRAMDISKFS
     vim /etc/mkinitcpio.conf 
         HOOKS=(base udev autodetect keyboard keymap modconf block encrypt filesystems fsck)
-    
     mkinitcpio -p linux-lts
 
 #### BOOTLOADER
