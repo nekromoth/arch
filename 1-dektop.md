@@ -20,9 +20,9 @@
 It would to be a good idea to reboot after this.
     
     
-Install ```pamac``` and ```terminus-ttf``` from AUR. 
+Install ```polybar``` and ```terminus-ttf``` from AUR. 
 
-    git clone https://aur.archlinux.org/pamac-aur.git
+    git clone https://aur.archlinux.org/polybar.git
     git clone https://aur.archlinux.org/terminus-font-ttf.git
     
 ```cd``` into downloaded folder and ```makepkg -si```
