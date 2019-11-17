@@ -50,7 +50,9 @@ If you have a SSD change ```relatime``` on all **non-boot** partitions to ```noa
     vim /etc/hosts
         127.0.0.1   localhost
         ::1         localhost
-        127.0.1.1   home.localdomain home
+        127.0.1.1   arch.localdomain arch
+Change `arch` to your hostname.
+
 #### ROOT PASSWORD
     passwd 
 
