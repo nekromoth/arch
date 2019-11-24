@@ -19,7 +19,7 @@ Incase your BACKSPACE wont work try:
           
 #### LUKS ENCRYPTION
     modprobe dm-crypt
-    cryptsetup -c aes-xts-plain -s 512 -h sha512 -i 8000 luksFormat /dev/sda2
+    cryptsetup -c aes-xts-plain -s 512 -h sha512 -i 16000 luksFormat /dev/sda2
     cryptsetup open /dev/sda2 cryroot
 
 #### FORMAT AND MOUNT ROOT
