@@ -84,6 +84,7 @@ Change `arch` to your hostname.
     vim /boot/loader/loader.conf
         default arch
         editor 0
+        console-mode max
         timeout 0
         
     lsblk -f >> /boot/loader/entries/arch.conf
