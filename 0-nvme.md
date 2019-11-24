@@ -97,3 +97,7 @@ Change `arch` to your hostname.
         initrd  /initramfs-linux-lts.img
         options cryptdevice=UUID=<UUID>:cryroot root=/dev/mapper/cryroot rw
 **Use the UUID from /dev/nvme0n1p2 !**
+
+#### REEBOOT THAT FUCKER
+    exit
+    reboot
