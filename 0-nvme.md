@@ -7,15 +7,16 @@
     (systemctl status sshd)
     passwd 
     ip addr
-Incase your BACKSPACE wont work try:
+    
+Incase your *backspace* doesnt work try:
 
     export TERM=vt100
     
 #### PARTITIONS
     (lsblk)
     gdisk /dev/nvme0n1
-        * Part 1  512 MiB   ef00  /boot
-        * Part 2  remainder 8300  /
+* `Part 1  512 MiB   ef00  /boot`
+* `Part 2  remainder 8300  /`
           
 #### LUKS ENCRYPTION
     modprobe dm-crypt
@@ -37,11 +38,11 @@ Incase your BACKSPACE wont work try:
 #### GENERATE FILESYSTEM TABLE
     genfstab -pU /mnt >> /mnt/etc/fstab
     
-If you have a SSD change ```relatime``` on all **non-boot** partitions to ```noatime```.
+If you have a **SSD** change ```relatime``` on all **non-boot** partitions to ```noatime```.
 
     vim /mnt/etc/fstab
 
-#### CHANGE ROOT
+#### GOTO NEW ARCH-INSTALL
     arch-chroot /mnt
 
 #### SYSTEM CLOCK
@@ -98,6 +99,6 @@ Change `arch` to your hostname.
         options cryptdevice=UUID=<UUID>:cryroot root=/dev/mapper/cryroot rw
 **Use the UUID from /dev/nvme0n1p2 !**
 
-#### REEBOOT THAT FUCKER
+#### REBOOT 
     exit
     reboot
