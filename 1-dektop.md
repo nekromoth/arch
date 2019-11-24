@@ -27,7 +27,8 @@ It would to be a good idea to reboot after this.
     
     
 Install ```polybar``` and ```terminus-ttf``` from AUR. 
-
+    mkdir AUR 
+    cd AUR
     git clone https://aur.archlinux.org/polybar.git
     git clone https://aur.archlinux.org/terminus-font-ttf.git
     
