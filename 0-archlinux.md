@@ -7,6 +7,9 @@
     (systemctl status sshd)
     passwd 
     ip addr
+Incase your BACKSPACE wont work try:
+
+    export TERM=vt100
     
 #### PARTITIONS
     (lsblk)
