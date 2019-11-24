@@ -7,6 +7,9 @@
     systemctl start sshd
     (systemctl status sshd)
     ip addr
+Incase your BACKSPACE wont work try:
+
+    export TERM=vt100  
     
 #### AUTOLOGIN
     sudo mkdir /etc/systemd/system/getty@tty1.service.d
