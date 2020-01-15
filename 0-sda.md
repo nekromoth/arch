@@ -68,7 +68,7 @@ Change `arch` to your hostname.
     moth ALL=(ALL) ALL
     
 #### LOCALES
-    echo /etc/locale.gen > en_US.UTF-8 UTF8
+    echo en_US.UTF-8 UTF8 > /etc/locale.gen
     echo LANG=en_US.UTF-8 > /etc/locale.conf
     echo KEYMAP=de-latin1-nodeadkeys > /etc/vconsole.conf
     locale-gen
@@ -95,4 +95,5 @@ Change `arch` to your hostname.
         initrd  /intel-ucode.img
         initrd  /initramfs-linux-lts.img
         options cryptdevice=UUID=<UUID>:cryroot root=/dev/mapper/cryroot rw
-**Use the UUID from /dev/sda2 !**
+        
+**Use the ```<UUID>``` from /dev/sda2 !**
