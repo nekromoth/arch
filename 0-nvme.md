@@ -47,7 +47,7 @@ If you have a **SSD** change `relatime` on all **non-boot** partitions to `noati
 
 #### SYSTEM CLOCK
     ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
-    hwclock -s
+    hwclock -l
     
 #### HOSTNAME
     echo arch > /etc/hostname
