@@ -33,7 +33,7 @@ Incase your *backspace* doesnt work try:
     mount /dev/nvme0n1p1 /mnt/boot
 
 #### INSTALL THE BASE SYSTEM
-    pacstrap /mnt base base-devel networkmanager linux-lts linux-firmware intel-ucode openssh gvim man-db man-pages texinfo
+    pacstrap /mnt base base-devel networkmanager linux-lts linux-firmware intel-ucode openssh gvim man-db man-pages
 
 #### GENERATE FILESYSTEM TABLE
     genfstab -pU /mnt >> /mnt/etc/fstab
