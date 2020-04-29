@@ -37,7 +37,7 @@ Incase your *backspace* doesnt work try:
     mount /dev/nvme0n1p1 /mnt/boot
 
 ### INSTALL THE BASE SYSTEM
-    pacstrap /mnt base base-devel networkmanager linux-lts linux-firmware intel-ucode openssh gvim man-db man-pages
+    pacstrap /mnt base base-devel networkmanager linux-lts linux-firmware intel-ucode openssh gvim man-db man-pages zsh
 
 ### GENERATE FILESYSTEM TABLE
     genfstab -pU /mnt >> /mnt/etc/fstab
@@ -65,7 +65,7 @@ Change `arch` to your hostname.
     passwd 
 
 ### USER
-    useradd -m -g users -s /bin/bash moth
+    useradd -m -g users -s $(which zsh) moth
     passwd moth
     
 ### SUDO 
