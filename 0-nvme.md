@@ -1,12 +1,16 @@
 ### KEYMAP
     loadkeys de 
-    
-### SSH ? 
+
+## SSH
+### TARGET
     (wifi-menu)
+    passwd 
     systemctl start sshd
     (systemctl status sshd)
-    passwd 
     ip addr
+    
+### HOST
+    ssh root@ip.address.of.target
     
 Incase your *backspace* doesnt work try:
 
