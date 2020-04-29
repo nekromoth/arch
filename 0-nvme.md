@@ -19,7 +19,9 @@
     ssh root@ip.address.of.target
     
 In case your *backspace* doesnt work try: `export TERM=vt100`
-    
+
+___
+
 **PARTITIONS**
 
     (lsblk)
