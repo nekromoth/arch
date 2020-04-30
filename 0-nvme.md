@@ -4,9 +4,9 @@
    
     loadkeys de 
 
-## SSH ?  
+---
 
-**TARGET**
+**SSH TARGET**
 
     (wifi-menu)
     passwd 
@@ -14,13 +14,13 @@
     (systemctl status sshd)
     ip addr
     
-**HOST**
+**SSH HOST**
     
     ssh root@ip.address.of.target
     
 In case your *backspace* doesnt work try: `export TERM=vt100`
 
-___
+---
 
 **PARTITIONS**
 
