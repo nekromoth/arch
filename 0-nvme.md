@@ -139,12 +139,12 @@ Rembember: `>>UUID<<` is a placeholder as a whole.
         [Service]
         ExecStart=
         ExecStart= -/usr/bin/agetty -a moth %I $TERM
-        
+
+**DOTFILES**
+
 **DESKTOP SYSTEM**
     
     sudo pacman -S xorg xorg-xinit i3-gaps rofi firefox ranger git terminus-font gufw polkit-gnome gnome-keyring rxvt-unicode pulseaudio pavucontrol dosfstools 
-    
-**DOTFILES**
 
 **XORG KEYBOARD and i3**
     
