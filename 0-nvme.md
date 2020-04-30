@@ -1,4 +1,4 @@
-# 1. BASE SYSTEM 
+# BASE SYSTEM 
 
 **KEYMAP**
    
@@ -130,7 +130,7 @@ Rembember: `>>UUID<<` is a placeholder as a whole.
     exit
     reboot
 
-# 2. DESKTOP ENVIROMENT
+# DESKTOP ENVIROMENT
 
 **AUTOLOGIN**
 
