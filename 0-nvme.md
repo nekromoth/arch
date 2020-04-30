@@ -140,17 +140,17 @@ Rembember: `>>UUID<<` is a placeholder as a whole.
         ExecStart=
         ExecStart= -/usr/bin/agetty -a moth %I $TERM
         
-### DESKTOP SYSTEM
+**DESKTOP SYSTEM**
     sudo pacman -S xorg xorg-xinit i3-gaps rofi firefox ranger git terminus-font gufw polkit-gnome gnome-keyring rxvt-unicode pulseaudio pavucontrol dosfstools 
     
-### DOTFILES
+**DOTFILES**
 
-### XORG KEYBOARD and i3
+**XORG KEYBOARD and i3**
     localectl --no-convert set-x11-keymap de pc105 nodeadkeys
     vim ~/.xinitrc
         xset r rate 250 60 
         exec i3
        
-### FIREWALL
+**FIREWALL**
     systemctl start ufw.service
     systemctl enable ufw.service
