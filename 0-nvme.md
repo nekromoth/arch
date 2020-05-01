@@ -156,7 +156,7 @@ Rembember: `>>UUID<<` is a placeholder as a whole.
     
     sudo pacman -S xorg xorg-xinit i3-gaps firefox ranger git 
     terminus-font gufw polkit-gnome gnome-keyring rxvt-unicode pulseaudio 
-    pavucontrol dosfstools feh w3m
+    pavucontrol dosfstools feh w3m picom
 
 **XORG KEYBOARD and i3**
     
