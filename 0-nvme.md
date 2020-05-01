@@ -33,7 +33,7 @@ In case your *backspace* doesnt work try: `export TERM=vt100`
 **LUKS ENCRYPTION**
 
     modprobe dm-crypt
-    cryptsetup -c aes-xts-plain -s 512 -h sha512 -i 16000 luksFormat /dev/nvme0n1p2
+    cryptsetup -c aes-xts-plain -s 512 -h sha512 -i 10000 luksFormat /dev/nvme0n1p2
     cryptsetup open /dev/nvme0n1p2 cryroot
 
 **FORMAT AND MOUNT ROOT**
