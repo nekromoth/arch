@@ -105,6 +105,7 @@ Change `relatime` on **non-boot** partition (`nvme0n1p2` aka `/dev/mapper/cryroo
     mkinitcpio -p linux-lts
 
 **BOOTLOADER**
+    
     bootctl install
     
     vim /boot/loader/loader.conf
@@ -130,8 +131,17 @@ Rembember: `>>UUID<<` is a placeholder as a whole.
     exit
     reboot
 
+
+
+
 # DESKTOP ENVIROMENT
 
+**INTERNET**
+
+    systemctl enable NetworkManager
+    systemctl start NetworkManager
+    nmtui
+    
 **AUTOLOGIN**
 
     sudo mkdir /etc/systemd/system/getty@tty1.service.d
